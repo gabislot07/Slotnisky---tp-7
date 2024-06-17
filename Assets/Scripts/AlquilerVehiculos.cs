@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class AlquilerVehiculos : MonoBehaviour
 {
-    public Vehiculo[] vehiculos;
+    public Vehiculo[] auto;
 
     // Start is called before the first frame update
     void Start()
     {
-        ResetearVehiculosStart();
-        float promedio = 0;
-        for (int i = 0; i < vehiculos.Length; i++)
+        vehiculoReset();
+        float prom = 0;
+        for (int i = 0; i < auto.Length; i++)
         {
-            Vehiculo vehiculo = vehiculos[i];
-            promedio += vehiculo.precioAlquiler;
+            Vehiculo vehiculo = auto[i];
+            prom += vehiculo.precioAlquiler;
         }
-        Debug.Log(promedio / vehiculos.Length);
+        Debug.Log(prom / auto.Length);
     }
 
     // Update is called once per frame
@@ -24,25 +24,25 @@ public class AlquilerVehiculos : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            ResetearVehiculos();
-            int numAleatoreo = Random.Range(0, vehiculos.Length);
-            vehiculos[numAleatoreo].CartelPromo.gameObject.SetActive(true);
+            ResetVehiculos();
+            int numAleatoreo = Random.Range(0, auto.Length);
+            auto[numAleatoreo].CartelPromo.gameObject.SetActive(true);
         }   
     }
 
-    void ResetearVehiculosStart()
+    void vehiculoReset()
     {
-        for (int i = 0; i<vehiculos.Length; i++)
+        for (int i = 0; i< auto.Length; i++)
         {
-            if (vehiculos[i].cantRuedas > 4)
+            if (auto[i].cantRuedas > 4)
             {
-                vehiculos[i].CartelPromo.SetActive(false);
+                auto[i].CartelPromo.SetActive(false);
             }
         }
     }
-    void ResetearVehiculos()
+    void ResetVehiculos()
     {
-        foreach (Vehiculo vehiculo in vehiculos)
+        foreach (Vehiculo vehiculo in auto)
         {
             vehiculo.CartelPromo.SetActive(false);
         }
